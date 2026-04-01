@@ -1,21 +1,24 @@
 package org.example.spendingtracker;
 
-import com.rabbitmq.client.ConnectionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.containers.RabbitMQContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 @SpringBootTest
 @ActiveProfiles("test")
 class SpendingTrackerApplicationTests {
 
-    @MockitoBean
-    private MongoTemplate mongoTemplate;
+    @Container
+    @ServiceConnection
+    static MongoDBContainer mongo = new MongoDBContainer("mongo:7.0");
 
-    @MockitoBean
-    private ConnectionFactory connectionFactory;
+    @Container
+    @ServiceConnection
+    static RabbitMQContainer rabbit = new RabbitMQContainer("rabbitmq:3.13-management");
 
     @Test
     void contextLoads() {
