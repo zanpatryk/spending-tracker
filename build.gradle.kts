@@ -32,6 +32,7 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
 
     testImplementation("org.testcontainers:junit-jupiter:$testContainersVersion")
@@ -39,6 +40,14 @@ dependencies {
     testImplementation("org.testcontainers:rabbitmq:$testContainersVersion")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    compileOnly("org.projectlombok:lombok:1.18.44")
+    annotationProcessor("org.projectlombok:lombok:1.18.44")
+
+    testCompileOnly("org.projectlombok:lombok:1.18.44")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.44")
+
+    implementation("org.springframework.boot:spring-boot-starter-json")
 }
 
 tasks.withType<Test> {
